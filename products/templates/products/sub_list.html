@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Pur Beurre</title>
+</head>
+<body>
+{% block header %}
+    <section class="page-section bg-dark" id="head">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    {% for element in searched %}
+                    <h2 class="text-white mt-0">{{ element.product_name }}</h2>
+                    <img class="img-fluid"
+                         src="{{ element.image_url }}"
+                         alt="{{ element.product_name }}">
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock header %}
+
+{% block content %}
+    <section class="page-section" id="list2">
+        <div class="container">
+            <h2 class="text-center mt-0">Vous pouvez remplacer cet aliment par :</h2>
+            <hr class="divider my-4" />
+
+            <div class="row ">
+                {% for element in product %}
+                <div class="col-sm-12 col-lg-12 col-md-12 col-xl-4 text-center">
+                    <div class=".container-sub">
+                        <div class="nutriscore">
+                         {% with 'dist/assets/img/'|add:element.nutriscore|add:'.png' as image_static %}
+                             <img  src="{% static image_static %}"
+                             alt="{{ element.product_name }}" width="40" height="60"/>
+                        {% endwith %}
+                        </div>
+
+                        <form method="POST" action="{% url 'products:detail' %}">
+                            {% csrf_token %}
+                                <input type="image" name="product-image" src="{{ element.image_url }}" value="{{element.product_name}}">
+                                <input type="hidden" name="product-id" value="{{element.id}}" required="required">
+
+                        </form>
+
+                        <h3 class="h4 mb-2">{{ element.product_name }}</h3>
+                        {% if user.is_authenticated %}
+                            <form method="POST" action="{% url 'products:save' %}" id="{{element.id}}">
+                                {% csrf_token %}
+                                {% for element in searched %}
+                                <input type="hidden" name="product-searched-name" value="{{element.product_name}}" >
+                                <input type="hidden" name="product-searched-id" value="{{element.id}}" >
+                                <input type="hidden" name="product-searched-barcode" value="{{element.barcode}}" >
+                                <input type="hidden" name="product-searched-nutriscore" value="{{element.nutriscore}}" >
+
+                                {% endfor %}
+                                <input type="hidden" name="substitute-searched-name" value="{{element.product_name}}">
+                                <input type="hidden" name="substitute-searched-id" value="{{element.id}}" >
+                                <input type="hidden" name="substitute-searched-barcode" value="{{element.barcode}}">
+                                <input type="hidden" name="substitute-searched-nutriscore" value="{{element.nutriscore}}">
+                                <button type="submit" class="btn btn-primary" form="{{element.id}}"><i class="far fa-save fa-fw fa-2x" ></i></button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+.container-sub {
+  position: relative;
+}
+
+.product-image {
+ width: 350px;
+ height: 350px;
+ object-fit: cover;
+ object-position: center center;
+ padding: 10px;
+}
+
+.nutriscore {
+ width: 40px;
+ height: 60px;
+ position: absolute;
+ top: -1.5rem;
+ right: -0.80rem;
+}

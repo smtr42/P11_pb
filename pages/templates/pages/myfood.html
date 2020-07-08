@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static%}
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% block content %}
+    <section class="page-section" id="fav-list">
+        <div class="container">
+            <h2 class="text-center mt-0">Votre liste de favoris enregistrés :</h2>
+            <hr class="divider my-4" />
+
+            <div class="row ">
+                {% for queryset in favorites %}
+                    {% for element in queryset %}
+                    <div class="col-sm-1 col-lg-1 col-md-1 col-xl-4 text-center">
+                        <div class=".container-sub">
+                            <div class="nutriscore">
+                             {% with 'dist/assets/img/'|add:element.nutriscore|add:'.png' as image_static %}
+                                 <img  src="{% static image_static %}"
+                                 alt="{{ element.product_name }}" width="40" height="60"/>
+                            {% endwith %}
+                            </div>
+
+                            <img class="product-image"
+                             src="{{ element.image_url }}"
+                             alt="{{ element.product_name }}">
+
+                            <h3 class="h4 mb-2">{{ element.product_name }}</h3>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+
+
+
+</body>
+</html>

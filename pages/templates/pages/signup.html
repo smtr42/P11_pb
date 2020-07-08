@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SignUpPage</title>
+</head>
+<body>
+{% block header %}
+    <header class="masthead">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center justify-content-center ">
+                <div class="col-lg-8 align-self-baseline">
+                    <p class="text-white font-weight-light mb-5">
+                    <form method="post">
+                      {% csrf_token %}
+                      {% for field in form.visible_fields %}
+                            <div class="text-white">
+                                {{ field.label_tag }} {{ field }}
+                            </div>
+                        {% endfor %}
+                      <button type="submit">Sign up</button>
+                    </form>
+                    </p>
+                </div>
+            </div>
+        </div> 
+    </header>
+{% endblock header %}
+
+</body>
+</html>

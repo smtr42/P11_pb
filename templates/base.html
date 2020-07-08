@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>{% block title %}{% endblock title %}</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'dist/assets/img/favicon.ico' %}" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+        <!-- Third party plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'dist/css/styles.css'%}" rel="stylesheet" />
+
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        {% block nav %}
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+                <div class="container">
+                    <a class="navbar-brand" href="{% url 'pages:index' %}">
+                      <img src="{% static 'dist/assets/img/logo-100.png' %}" alt="Pur beurre">
+                    </a>
+                    <a class="navbar-brand js-scroll-trigger"
+                       href="{% url 'pages:index' %}">Pur Beurre</a><button
+                        class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+
+                            <form action="{% url 'products:sub_list' %}" method="POST">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <input type="text"
+                                           id="product-input"
+                                           name="product"
+                                           class="form-control product-input"
+                                           placeholder="Cherchez ici un produit...">
+                                </div>
+                            </form>
+
+
+                            {% if user.is_authenticated %}
+
+                                <a href="{% url 'pages:profile' %}"><i class="fas fa-user fa-fw fa-2x"></i></a>
+                                <a href="{% url 'products:fav' %}"><i class="fas fa-carrot fa-fw fa-2x"></i></a>
+                                <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt fa-fw fa-2x"></i></a>
+                            {% else %}
+                                <a href="{% url 'account_signup' %}"><i class="fas fa-user-plus fa-fw fa-2x"></i></a>
+                                <a href="{% url 'account_login' %}"><i class="fas fa-sign-in-alt fa-fw fa-2x"></i></a>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        {% endblock nav %}
+
+        <!-- Masthead-->
+        {% block header %}
+        {% endblock header %}
+
+        {% block content %}
+        {% endblock content %}
+
+        <!-- Contact-->
+        {% block contact %}
+        {% endblock contact %}
+
+        {% block scripts %}
+            <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script>
+            const autocomplete_url = "{% url 'autocomplete:complete' %}";
+        </script>
+        {{ block.super }}
+            <script src="{% static 'js/autocomplete.js' %}"></script>
+        {% endblock scripts %}
+
+        {% block mentions %}
+        {% endblock mentions %}
+
+        {% block footer %}
+        <!-- Footer-->
+        <footer class="bg-light py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
+                        <div><a id=notice class="d-block" href="{% url 'pages:notice' %}">Mentions légales</a></div>
+                    </div>
+                    <div class="col-lg-4 mr-auto text-center">
+                        <a id=contact-l class="d-block" href="{% url 'pages:index' %}#contact">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Start Bootstrap</div></div>
+        </footer>
+        {% endblock footer %}
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'dist/js/scripts.js' %}"></script>
+    </body>
+</html>
+
+

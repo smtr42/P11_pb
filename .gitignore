@@ -1,0 +1,10 @@
+__pycache__/
+.venv
+htmlcov/
+.coverage
+.coverage.*
+.cache
+.vscode/
+__pycache__
+/__pycache__
+*.pyc

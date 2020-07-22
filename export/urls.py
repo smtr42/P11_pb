@@ -1,7 +1,7 @@
 from django.urls import include, path
 from .views import export
 
-
+app_name = "export"
 urlpatterns = [
-    path('export/', export ,name="export"),
+    path('', export ,name="export"),
 ]

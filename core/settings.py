@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "products.apps.ProductsConfig",
     "users.apps.UsersConfig",
     "pages.apps.PagesConfig",
+    "export.apps.ExportConfig",
     "autocomplete.apps.AutocompleteConfig",
 ]
 

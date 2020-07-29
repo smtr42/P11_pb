@@ -1,6 +1,0 @@
-{% for row in data %}{% spaceless %}{% if forloop.first %}
-    "{{ row.0 }}","{{ row.1 }}","{{ row.2 }}","{{ row.3 }}","{{ row.4 }}","{{ row.5|addslashes|safe }}","{{ row.6|addslashes|safe }}","{{ row.7|addslashes|safe }}","{{ row.8|addslashes|safe }}"{% else %}
-    {{ row.0 }},"{{ row.1|addslashes }}","{{ row.2|default:"-" }}","{{ row.3|date:"Y-m-d H:i"|default:"-" }}","{{ row.4|date:"Y-m-d H:i"|default:"-" }}","{{ row.5|yesno:"oui,non" }}","{{ row.6|addslashes|safe }}","{{ row.7|addslashes|safe }}","{{ row.8|addslashes|safe }}"
-{% endif %}
-{% endspaceless %}
-{% endfor %}

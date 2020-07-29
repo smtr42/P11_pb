@@ -25,4 +25,5 @@ urlpatterns = [
     path(
         "autocomplete/", include("autocomplete.urls", namespace="autocomplete")
     ),
+    path("export/", include("export.urls", namespace="export")),
 ]

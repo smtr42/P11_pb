@@ -98,7 +98,7 @@ class ProductManager(models.Manager):
         )
 
     @staticmethod
-    def get_fav(request):
+    def get_fav(request, val=["product_name","nutriscore","id","url","image_url","image_nut_url"]):
         """Return the favorites of the user."""
         product_model = apps.get_model("products", "Product")
         favorite_model = apps.get_model("products", "Favorite")
@@ -107,22 +107,15 @@ class ProductManager(models.Manager):
             .filter(user=request.user)
             .values("product_id", "substitute_id")
         )
-        favorite_list = []
+        favorite_qs_list = []
 
         for element in qs_favs:
-            favorite_list.append(
+            favorite_qs_list.append(
                 product_model.objects.filter(
                     id=element["substitute_id"]
-                ).values(
-                    "product_name",
-                    "nutriscore",
-                    "id",
-                    "url",
-                    "image_url",
-                    "image_nut_url",
-                )
+                ).values(*val)
             )
-        return favorite_list
+        return favorite_qs_list
 
     @staticmethod
     def get_detail(data):

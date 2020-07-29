@@ -16,6 +16,15 @@
             <a href="{% url 'export:export' %}">Télécharger</a> ou 
             <a href="{% url 'filu:filu' %}">Importer</a>
 
+
+
+            <form action="{% url 'filu:filu' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" name="myfile">
+                <button type="submit">Upload</button>
+            </form>
+
+
             <hr class="divider my-4" />
 
             <div class="row ">

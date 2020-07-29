@@ -23,16 +23,16 @@ def export(request):
 
     for element in qs_favs:
         favorite_qs_list.append(
-            product_model.objects.filter(
-                id=element["substitute_id"]
-            ).values("barcode", "product_name")
+            product_model.objects.filter(id=element["substitute_id"]).values(
+                "barcode", "product_name"
+            )
         )
         favorite_qs_list.append(
-            product_model.objects.filter(
-                id=element["product_id"]
-            ).values("barcode", "product_name")
+            product_model.objects.filter(id=element["product_id"]).values(
+                "barcode", "product_name"
+            )
         )
-    
+
     csv_data = [element[0] for element in favorite_qs_list]
     csv_data = [list(element.values()) for element in csv_data]
     csv_data.insert(0, ["barcode", "product_name"])

@@ -98,7 +98,17 @@ class ProductManager(models.Manager):
         )
 
     @staticmethod
-    def get_fav(request, val=["product_name","nutriscore","id","url","image_url","image_nut_url"]):
+    def get_fav(
+        request,
+        val=[
+            "product_name",
+            "nutriscore",
+            "id",
+            "url",
+            "image_url",
+            "image_nut_url",
+        ],
+    ):
         """Return the favorites of the user."""
         product_model = apps.get_model("products", "Product")
         favorite_model = apps.get_model("products", "Favorite")

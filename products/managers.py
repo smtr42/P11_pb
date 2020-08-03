@@ -3,6 +3,7 @@ from django.apps import apps
 from django.core.management.color import no_style
 from django.db import IntegrityError, connection, models
 import csv
+from django.conf import settings
 
 class ProductManager(models.Manager):
     """Custom Object for Poroduct."""
@@ -149,8 +150,11 @@ class ProductManager(models.Manager):
         return self.filter(product_name__icontains=term)
 
     @staticmethod
-    def read_and_import(myfile):
-        with open(myfile, 'rb+') as destination:
-            for chunk in f.chunks():
-                destination.write(chunk)
-        pass
+    def read_and_import(myfile_name):
+        media_root = settings.MEDIA_ROOT # /home/teiva/oc/P11_pb/media
+        print(media_root)
+        file_url = media_root + "/" + myfile_name
+        with open(file_url, 'r') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                print(row)

@@ -29,7 +29,7 @@ def upload_file(request):
         fs = FileSystemStorage()
         filename = fs.save(myfile.name, myfile)
         uploaded_file_url = fs.url(filename)
-        Product.objects.read_and_import(uploaded_file_url)
+        Product.objects.read_and_import(myfile.name)
 
         return render(
             request,

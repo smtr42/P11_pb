@@ -5,8 +5,12 @@
     <section class="page-section" id="fav-list">
         <div class="container">
             <h2 class="text-center mt-0">Votre liste de favoris enregistrés :</h2>
-            <a href="{% url 'export:export' %}">Télécharger</a> ou <a href="{% url 'filu:importfile' %}">importer</a>
-
+            {% if uploaded_file_url %}
+                <p>Le fichier est bien uploadé !</p>
+                <a href="{% url 'products:fav' %}">Voir mes favoris</a>
+            {% else %}
+                <a href="{% url 'export:export' %}">Télécharger</a> ou <a href="{% url 'filu:uploadpage' %}">importer</a>
+            {% endif %}
 
             <hr class="divider my-4" />
 

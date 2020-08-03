@@ -2,7 +2,7 @@
 from django.apps import apps
 from django.core.management.color import no_style
 from django.db import IntegrityError, connection, models
-
+import csv
 
 class ProductManager(models.Manager):
     """Custom Object for Poroduct."""
@@ -147,3 +147,10 @@ class ProductManager(models.Manager):
     def get_all_by_term(self, term):
         """Filter product containing terms for autocomplete."""
         return self.filter(product_name__icontains=term)
+
+    @staticmethod
+    def read_and_import(myfile):
+        with open(myfile, 'rb+') as destination:
+            for chunk in f.chunks():
+                destination.write(chunk)
+        pass

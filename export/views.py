@@ -1,7 +1,7 @@
+from django.apps import apps
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
-from django.apps import apps
 
 from products.managers import ProductManager
 from products.models import Product

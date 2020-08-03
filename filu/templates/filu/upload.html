@@ -5,12 +5,16 @@
     <section class="page-section" id="fav-list">
         <div class="container">
             <h2 class="text-center mt-0">Votre liste de favoris enregistrés :</h2>
-            <a href="{% url 'export:export' %}">Télécharger</a> ou 
-
+{% comment %} 
             <form action="{% url 'filu:filu' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="file" name="myfile">
                 <button type="submit">Upload</button>
+            </form> {% endcomment %}
+            <form action="{% url 'filu:filu' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Submit">
             </form>
         </div>
     </section>

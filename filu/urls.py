@@ -1,9 +1,12 @@
+from django.contrib.auth.decorators import login_required
 from django.urls import path
 
-from .views import upload_file, Importfile
+from .views import Uploadpage, upload_file
 
 app_name = "filu"
 urlpatterns = [
     path("", upload_file, name="filu"),
-    path("importfile", Importfile.as_view(), name="importfile"),
+    path(
+        "uploadpage", login_required(Uploadpage.as_view()), name="uploadpage"
+    ),
 ]

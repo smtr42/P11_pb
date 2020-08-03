@@ -1,28 +1,11 @@
-<!DOCTYPE html>
 {% extends 'base.html' %}
 {% load static%}
-
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
 {% block content %}
     <section class="page-section" id="fav-list">
         <div class="container">
             <h2 class="text-center mt-0">Votre liste de favoris enregistrés :</h2>
-            <a href="{% url 'export:export' %}">Télécharger</a> ou 
-            <a href="{% url 'filu:filu' %}">Importer</a>
-
-
-
-            <form action="{% url 'filu:filu' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <input type="file" name="myfile">
-                <button type="submit">Upload</button>
-            </form>
+            <a href="{% url 'export:export' %}">Télécharger</a> ou <a href="{% url 'filu:importfile' %}">importer</a>
 
 
             <hr class="divider my-4" />
@@ -51,9 +34,3 @@
         </div>
     </section>
 {% endblock content %}
-
-
-
-
-</body>
-</html>

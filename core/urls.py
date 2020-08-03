@@ -24,8 +24,7 @@ urlpatterns = [
     path("users/", include("django.contrib.auth.urls")),
     path("accounts/", include("allauth.urls")),
     path("products/", include("products.urls")),
-    path(
-        "autocomplete/", include("autocomplete.urls", namespace="autocomplete")
+    path("autocomplete/", include("autocomplete.urls", namespace="autocomplete")
     ),
     path("export/", include("export.urls", namespace="export")),
     path("filu/", include("filu.urls", namespace="filu")),

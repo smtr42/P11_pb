@@ -1,5 +1,6 @@
 """Database operations with a global scale."""
 import csv
+from pathlib import Path
 
 from django.apps import apps
 from django.conf import settings
@@ -153,7 +154,6 @@ class ProductManager(models.Manager):
     @staticmethod
     def read_and_import(request, myfile_name):
         media_root = settings.MEDIA_ROOT  # /home/teiva/oc/P11_pb/media
-        print(media_root)
         file_url = media_root + "/" + myfile_name
         with open(file_url, "r") as file:
             reader = csv.reader(file)
@@ -162,7 +162,6 @@ class ProductManager(models.Manager):
                     meow = int(row[0])
                     favorite_model = apps.get_model("products", "Favorite")
                     product_model = apps.get_model("products", "Product")
-
                     product = product_model.objects.get(barcode=row[2])
                     sub = product_model.objects.get(barcode=row[0])
 
@@ -171,3 +170,8 @@ class ProductManager(models.Manager):
                     )
                 except ValueError:
                     pass
+            pathlib_url = Path(file_url)
+            try:
+                pathlib_url.unlink()
+            except OSError as e:
+                pass

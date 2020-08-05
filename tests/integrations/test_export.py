@@ -59,6 +59,12 @@ class ExportTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response._headers["content-type"][1], "text/csv")
         self.assertEqual(response.templates[0].name, "csv.txt")
-        self.assertEqual(response.context["data"][0], ['barcode', 'product_name'])
-        self.assertEqual(response.context["data"][1][0], str(self.test_product2.barcode))
-        self.assertEqual(response.context["data"][1][2], str(self.test_product.barcode))
+        self.assertEqual(
+            response.context["data"][0], ["barcode", "product_name"]
+        )
+        self.assertEqual(
+            response.context["data"][1][0], str(self.test_product2.barcode)
+        )
+        self.assertEqual(
+            response.context["data"][1][2], str(self.test_product.barcode)
+        )

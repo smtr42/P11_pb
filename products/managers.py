@@ -1,9 +1,11 @@
 """Database operations with a global scale."""
+import csv
+
 from django.apps import apps
+from django.conf import settings
 from django.core.management.color import no_style
 from django.db import IntegrityError, connection, models
-import csv
-from django.conf import settings
+
 
 class ProductManager(models.Manager):
     """Custom Object for Poroduct."""
@@ -90,7 +92,6 @@ class ProductManager(models.Manager):
         """Save the selected product into favorites."""
         favorite_model = apps.get_model("products", "Favorite")
         product_model = apps.get_model("products", "Product")
-
         product = product_model.objects.get(id=data["product-searched-id"])
         sub = product_model.objects.get(id=data["substitute-searched-id"])
 
@@ -150,11 +151,23 @@ class ProductManager(models.Manager):
         return self.filter(product_name__icontains=term)
 
     @staticmethod
-    def read_and_import(myfile_name):
-        media_root = settings.MEDIA_ROOT # /home/teiva/oc/P11_pb/media
+    def read_and_import(request, myfile_name):
+        media_root = settings.MEDIA_ROOT  # /home/teiva/oc/P11_pb/media
         print(media_root)
         file_url = media_root + "/" + myfile_name
-        with open(file_url, 'r') as file:
+        with open(file_url, "r") as file:
             reader = csv.reader(file)
             for row in reader:
-                print(row)
+                try:
+                    meow = int(row[0])
+                    favorite_model = apps.get_model("products", "Favorite")
+                    product_model = apps.get_model("products", "Product")
+
+                    product = product_model.objects.get(barcode=row[2])
+                    sub = product_model.objects.get(barcode=row[0])
+
+                    favorite_model.objects.create(
+                        user=request.user, product=product, substitute=sub
+                    )
+                except ValueError:
+                    pass

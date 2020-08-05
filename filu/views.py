@@ -13,7 +13,9 @@ from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import FormView, TemplateView
+
 from products.models import Product
+
 from .forms import UploadFileForm
 
 
@@ -29,7 +31,7 @@ def upload_file(request):
         fs = FileSystemStorage()
         filename = fs.save(myfile.name, myfile)
         uploaded_file_url = fs.url(filename)
-        Product.objects.read_and_import(myfile.name)
+        Product.objects.read_and_import(request, myfile.name)
 
         return render(
             request,

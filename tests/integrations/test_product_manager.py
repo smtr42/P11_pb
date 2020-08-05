@@ -119,3 +119,9 @@ class SearchTest(TestCase):
         )
         response = self.client.get(reverse("products:detail"), data=data)
         self.assertEqual(response.status_code, 404)
+
+
+class SearchTest(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        pass

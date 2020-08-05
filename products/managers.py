@@ -1,5 +1,9 @@
 """Database operations with a global scale."""
+import csv
+from pathlib import Path
+
 from django.apps import apps
+from django.conf import settings
 from django.core.management.color import no_style
 from django.db import IntegrityError, connection, models
 
@@ -89,7 +93,6 @@ class ProductManager(models.Manager):
         """Save the selected product into favorites."""
         favorite_model = apps.get_model("products", "Favorite")
         product_model = apps.get_model("products", "Product")
-
         product = product_model.objects.get(id=data["product-searched-id"])
         sub = product_model.objects.get(id=data["substitute-searched-id"])
 
@@ -98,7 +101,17 @@ class ProductManager(models.Manager):
         )
 
     @staticmethod
-    def get_fav(request):
+    def get_fav(
+        request,
+        val=[
+            "product_name",
+            "nutriscore",
+            "id",
+            "url",
+            "image_url",
+            "image_nut_url",
+        ],
+    ):
         """Return the favorites of the user."""
         product_model = apps.get_model("products", "Product")
         favorite_model = apps.get_model("products", "Favorite")
@@ -107,22 +120,15 @@ class ProductManager(models.Manager):
             .filter(user=request.user)
             .values("product_id", "substitute_id")
         )
-        favorite_list = []
+        favorite_qs_list = []
 
         for element in qs_favs:
-            favorite_list.append(
+            favorite_qs_list.append(
                 product_model.objects.filter(
                     id=element["substitute_id"]
-                ).values(
-                    "product_name",
-                    "nutriscore",
-                    "id",
-                    "url",
-                    "image_url",
-                    "image_nut_url",
-                )
+                ).values(*val)
             )
-        return favorite_list
+        return favorite_qs_list
 
     @staticmethod
     def get_detail(data):
@@ -144,3 +150,28 @@ class ProductManager(models.Manager):
     def get_all_by_term(self, term):
         """Filter product containing terms for autocomplete."""
         return self.filter(product_name__icontains=term)
+
+    @staticmethod
+    def read_and_import(request, myfile_name):
+        media_root = settings.MEDIA_ROOT  # /home/teiva/oc/P11_pb/media
+        file_url = media_root + "/" + myfile_name
+        with open(file_url, "r") as file:
+            reader = csv.reader(file)
+            for row in reader:
+                try:
+                    meow = int(row[0])
+                    favorite_model = apps.get_model("products", "Favorite")
+                    product_model = apps.get_model("products", "Product")
+                    product = product_model.objects.get(barcode=row[2])
+                    sub = product_model.objects.get(barcode=row[0])
+
+                    favorite_model.objects.create(
+                        user=request.user, product=product, substitute=sub
+                    )
+                except ValueError:
+                    pass
+            pathlib_url = Path(file_url)
+            try:
+                pathlib_url.unlink()
+            except OSError as e:
+                pass

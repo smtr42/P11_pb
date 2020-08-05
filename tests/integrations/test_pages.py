@@ -64,13 +64,13 @@ class LoggedInTest(TestCase):
     def test_can_save_product(self):
         product = {
             "product-searched-name": ["Rosette"],
-            "product-searched-id": ["1"],
+            "product-searched-id": ["4"],
             "product-searched-barcode": ["3449865294044"],
             "product-searched-nutriscore": ["e"],
             "substitute-searched-name": [
                 "NESQUIK Moins de Sucres Poudre Cacaotée boîte"
             ],
-            "substitute-searched-id": ["2"],
+            "substitute-searched-id": ["5"],
             "substitute-searched-barcode": [""],
             "substitute-searched-nutriscore": ["a"],
         }

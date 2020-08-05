@@ -1,18 +1,17 @@
-<!DOCTYPE html>
 {% extends 'base.html' %}
 {% load static%}
-
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
 {% block content %}
     <section class="page-section" id="fav-list">
         <div class="container">
             <h2 class="text-center mt-0">Votre liste de favoris enregistrés :</h2>
+            {% if uploaded_file_url %}
+                <p>Le fichier est bien uploadé !</p>
+                <a href="{% url 'products:fav' %}">Voir mes favoris</a>
+            {% else %}
+                <a href="{% url 'export:export' %}">Télécharger</a> ou <a href="{% url 'filu:uploadpage' %}">importer</a>
+            {% endif %}
+
             <hr class="divider my-4" />
 
             <div class="row ">
@@ -26,7 +25,6 @@
                                  alt="{{ element.product_name }}" width="40" height="60"/>
                             {% endwith %}
                             </div>
-
                             <img class="product-image"
                              src="{{ element.image_url }}"
                              alt="{{ element.product_name }}">
@@ -40,9 +38,3 @@
         </div>
     </section>
 {% endblock content %}
-
-
-
-
-</body>
-</html>

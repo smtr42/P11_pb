@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "export.apps.ExportConfig",
     "filu.apps.FiluConfig",
     "autocomplete.apps.AutocompleteConfig",
+    "favoritecart.apps.FavoritecartConfig",
 ]
 
 MIDDLEWARE = [
@@ -168,6 +169,9 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
+# To handle the pending favorites managed by the favoritecart app
+FAVORITE_MODEL = "products.Favorite"
+FAVORITED_MODEL = "products.Product"
 
 if os.environ.get("ENV") == "production":
     django_heroku.settings(locals())

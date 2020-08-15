@@ -5,6 +5,9 @@ from django.shortcuts import render
 from products.forms import SearchForm
 from products.managers import ProductManager
 
+from favoritecart.helpers import redirect_to_login
+from favoritecart.cart import FavoriteCart
+
 
 def sub_list(request):
     """Display the list of substitute for one selected product."""
@@ -28,11 +31,22 @@ def sub_list(request):
     return render(request, "products/sub_list.html", {"form": form})
 
 
-@login_required(login_url="/accounts/login/")
 def save(request):
     """Save the product into favorite."""
     if request.method == "POST":
         data = request.POST
+        if not request.user.is_authenticated:
+            cart = FavoriteCart(request)
+            cart.add(
+                {
+                    "product": data["product-searched-id"],
+                    "substitute": data["substitute-searched-id"],
+                    "user": "user",
+                }
+            )
+            return redirect_to_login(
+                request, "pages/myfood.html", login_url="/accounts/login/"
+            )
         ProductManager.save_product(request, data)
         favs = ProductManager.get_fav(request)
         return render(request, "pages/myfood.html", {"favorites": favs})

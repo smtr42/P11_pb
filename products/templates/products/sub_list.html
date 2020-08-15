@@ -50,23 +50,21 @@
                         </form>
 
                         <h3 class="h4 mb-2">{{ element.product_name }}</h3>
-                        {% if user.is_authenticated %}
-                            <form method="POST" action="{% url 'products:save' %}" id="{{element.id}}">
-                                {% csrf_token %}
-                                {% for element in searched %}
-                                <input type="hidden" name="product-searched-name" value="{{element.product_name}}" >
-                                <input type="hidden" name="product-searched-id" value="{{element.id}}" >
-                                <input type="hidden" name="product-searched-barcode" value="{{element.barcode}}" >
-                                <input type="hidden" name="product-searched-nutriscore" value="{{element.nutriscore}}" >
+                        <form method="POST" action="{% url 'products:save' %}" id="{{element.id}}">
+                            {% csrf_token %}
+                            {% for element in searched %}
+                            <input type="hidden" name="product-searched-name" value="{{element.product_name}}" >
+                            <input type="hidden" name="product-searched-id" value="{{element.id}}" >
+                            <input type="hidden" name="product-searched-barcode" value="{{element.barcode}}" >
+                            <input type="hidden" name="product-searched-nutriscore" value="{{element.nutriscore}}" >
 
-                                {% endfor %}
-                                <input type="hidden" name="substitute-searched-name" value="{{element.product_name}}">
-                                <input type="hidden" name="substitute-searched-id" value="{{element.id}}" >
-                                <input type="hidden" name="substitute-searched-barcode" value="{{element.barcode}}">
-                                <input type="hidden" name="substitute-searched-nutriscore" value="{{element.nutriscore}}">
-                                <button type="submit" class="btn btn-primary" form="{{element.id}}"><i class="far fa-save fa-fw fa-2x" ></i></button>
-                            </form>
-                        {% endif %}
+                            {% endfor %}
+                            <input type="hidden" name="substitute-searched-name" value="{{element.product_name}}">
+                            <input type="hidden" name="substitute-searched-id" value="{{element.id}}" >
+                            <input type="hidden" name="substitute-searched-barcode" value="{{element.barcode}}">
+                            <input type="hidden" name="substitute-searched-nutriscore" value="{{element.nutriscore}}">
+                            <button type="submit" class="btn btn-primary" form="{{element.id}}"><i class="far fa-save fa-fw fa-2x" ></i></button>
+                        </form>
                     </div>
                 </div>
                 {% endfor %}

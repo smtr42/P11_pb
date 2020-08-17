@@ -3,7 +3,7 @@
 from django.apps import AppConfig
 
 
-class <built-in method title of str object at 0x10fa36930>Config(AppConfig):
+class FavoritecartConfig(AppConfig):
     """Main config data structure for the favoritecart app."""
 
     name = 'favoritecart'

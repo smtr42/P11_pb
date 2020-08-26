@@ -44,6 +44,7 @@ def save(request):
                     "user": "user",
                 }
             )
+            request.path = "products/fav"
             return redirect_to_login(
                 request, "pages/myfood.html", login_url="/accounts/login/"
             )

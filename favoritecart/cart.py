@@ -8,7 +8,7 @@ from .helpers import redirect_to_login
 class FavoriteCart:
     """Implements a cart storing pending favorites into session."""
 
-    CART_SESSION_ID = '__favorite_cart__'
+    CART_SESSION_ID = 'favorite_cart'
 
     def __init__(self, request, user=None):
         """Initializes the cart to store favorites."""
@@ -24,6 +24,7 @@ class FavoriteCart:
     def add(self, favorite):
         """Adds a favorite."""
         self.cart.append(favorite)
+
         self.session.modified = True
 
     def clear(self):
@@ -39,7 +40,6 @@ class FavoriteCart:
         # fetch the favorite and favorited models from the specs in settings
         favorite_model = self._get_model("favorite")
         favorited_model = self._get_model("favorited")
-
         # Save all pending favorites in database
         for favorite in self.cart:
             for key in favorite:

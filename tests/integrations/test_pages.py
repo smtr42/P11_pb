@@ -38,7 +38,7 @@ class LoggedInTest(TestCase):
             image_nut_url="https://test",
         )
 
-    def testLogin(self):
+    def test_login(self):
 
         self.client.login(email="test@test.com", password="1X<ISRUkw+tuK")
 

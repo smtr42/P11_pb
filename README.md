@@ -1,5 +1,5 @@
 <h1 align="center">
-  [WIP] Project 8 - Pur Beurre
+  [WIP] Project 11 - Pur Beurre
 </h1>
 
 <p align="center">
@@ -34,7 +34,7 @@
 
 - [Table of Contents](#table-of-contents)
 - [About The Project](#about-the-project)
-  - [Functionality](#functionality)
+  - [Functionality added](#functionality-added)
 - [Getting Started](#getting-started)
   - [Live version](#live-version)
   - [Installation](#installation)
@@ -54,21 +54,14 @@
 
 OpenFoodFacts is a database fed by volunteers in order to map the food and its ingredients. It's available under the Open Database License.
 
-The goal is to create an application so the user can find an healthier alternative to a specific food using OpenFoodFacts.
-
-This project is the 8th assignment for the Python developer diploma from OpenClassrooms.
-The goal is to learn about:
-* Django,
-* Deployement,
-* Agile development,
-* Common good practices.
+The goal is to create an application so the user can find an healthier alternative to a specific food using OpenFoodFacts. In project 11, new functionalities appears and a bug is introduced.
 
 
-### Functionality
+### Functionality added
 
-* Ability to find a reference in a clone of the OpenFoodFacts Database
-* The user can create and connect to his personnal account
-* The user ask for a product in the search bar and get a substitute he can save
+* When registering, a mail is sent to confirm the email address
+* You can export and import your favorites in csv
+* When not logged in, a cart save your favorite until you log and is then saved automatically
  
 <!-- GETTING STARTED -->
 ## Getting Started

@@ -1,14 +1,12 @@
 from django.apps import apps as django_apps
 from django.conf import settings
-from django.contrib.auth import REDIRECT_FIELD_NAME
-
-from .helpers import redirect_to_login
+from django.core.exceptions import ImproperlyConfigured
 
 
 class FavoriteCart:
     """Implements a cart storing pending favorites into session."""
 
-    CART_SESSION_ID = 'favorite_cart'
+    CART_SESSION_ID = "favorite_cart"
 
     def __init__(self, request, user=None):
         """Initializes the cart to store favorites."""
@@ -18,7 +16,7 @@ class FavoriteCart:
         cart = self.session.get(self.CART_SESSION_ID)
         if not cart:
             # save an empty cart in the session
-            cart = self.session["favorite_cart"] = []
+            cart = self.session[self.CART_SESSION_ID] = []
         self.cart = cart
 
     def add(self, favorite):

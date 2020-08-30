@@ -1,10 +1,11 @@
+import os
+
 from django.shortcuts import reverse
 from django.test import TestCase
 
-from products.managers import ProductManager
 from products.models import Category, Favorite, Product
 from users.models import User
-import os
+
 
 class FiluTest(TestCase):
     @classmethod

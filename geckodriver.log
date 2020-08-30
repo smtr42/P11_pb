@@ -36,3 +36,35 @@ console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Err
 1596640314178	Marionette	INFO	Listening on port 41115
 1596640314256	Marionette	WARN	TLS certificate errors will be ignored for this session
 1596640317672	Marionette	INFO	Stopped listening on port 41115
+1596641809790	geckodriver	INFO	Listening on 127.0.0.1:41249
+1596641810805	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileWMIXvo"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1596641813830	Marionette	INFO	Listening on port 42133
+1596641813924	Marionette	WARN	TLS certificate errors will be ignored for this session
+1596641817476	Marionette	INFO	Stopped listening on port 42133
+1598778451132	geckodriver	INFO	Listening on 127.0.0.1:48913
+1598778452134	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilem65W6b"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1598778454674	Marionette	INFO	Listening on port 39599
+1598778454741	Marionette	WARN	TLS certificate errors will be ignored for this session
+1598778461337	Marionette	INFO	Stopped listening on port 39599
+1598780345249	geckodriver	INFO	Listening on 127.0.0.1:38047
+1598780345257	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileg5Qgex"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1598780347498	Marionette	INFO	Listening on port 40569
+1598780347569	Marionette	WARN	TLS certificate errors will be ignored for this session
+1598780353232	Marionette	INFO	Stopped listening on port 40569
+console.error: services.settings: 
+  main/messaging-experiments Signature failed  TypeError: NetworkError when attempting to fetch resource.
+console.error: services.settings: 
+  main/fxmonitor-breaches Signature failed  TypeError: NetworkError when attempting to fetch resource.
+console.error: services.settings: 
+  main/message-groups Signature failed  TypeError: NetworkError when attempting to fetch resource.
+console.error: services.settings: 
+  main/partitioning-exempt-urls Signature failed  TypeError: NetworkError when attempting to fetch resource.
+1598805316520	geckodriver	INFO	Listening on 127.0.0.1:49695
+1598805316528	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilewonST6"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1598805318972	Marionette	INFO	Listening on port 43369
+1598805319046	Marionette	WARN	TLS certificate errors will be ignored for this session
+1598805325616	Marionette	INFO	Stopped listening on port 43369

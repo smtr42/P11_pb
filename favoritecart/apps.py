@@ -6,7 +6,7 @@ from django.apps import AppConfig
 class FavoritecartConfig(AppConfig):
     """Main config data structure for the favoritecart app."""
 
-    name = 'favoritecart'
+    name = "favoritecart"
 
     def ready(self):
         """Initializations to be performed with the app is ready."""

@@ -1,9 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from products.models import Category, Favorite, Product
-from users.models import User
-
 
 class HomePageViewTest(TestCase):
     def test_view_url_exists_at_desired_location(self):

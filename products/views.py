@@ -2,11 +2,10 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render
 
+from favoritecart.cart import FavoriteCart
+from favoritecart.helpers import redirect_to_login
 from products.forms import SearchForm
 from products.managers import ProductManager
-
-from favoritecart.helpers import redirect_to_login
-from favoritecart.cart import FavoriteCart
 
 
 def sub_list(request):
@@ -44,9 +43,8 @@ def save(request):
                     "user": "user",
                 }
             )
-            request.path = "products/fav"
             return redirect_to_login(
-                request, "pages/myfood.html", login_url="/accounts/login/"
+                request, "/products/fav", login_url="/accounts/login/"
             )
         ProductManager.save_product(request, data)
         favs = ProductManager.get_fav(request)

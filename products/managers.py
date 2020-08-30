@@ -153,7 +153,7 @@ class ProductManager(models.Manager):
 
     @staticmethod
     def read_and_import(request, myfile_name):
-        media_root = settings.MEDIA_ROOT  # /home/teiva/oc/P11_pb/media
+        media_root = settings.MEDIA_ROOT
         file_url = media_root + "/" + myfile_name
         with open(file_url, "r") as file:
             reader = csv.reader(file)
